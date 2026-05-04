@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carlos Paz Golf — Barrio Privado en las Sierras de Córdoba</title>
+<meta name="description" content="Un barrio privado con campo de golf de 18 hoyos, vistas panorámicas a las sierras y más de 80 familias que ya eligieron este estilo de vida. Lotes desde USD 80.000.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green-deep: #1A2E1E;
+    --green-mid: #2B4A32;
+    --green-light: #3D6B47;
+    --gold: #B8913C;
+    --gold-light: #D4AC58;
+    --cream: #F5F0E4;
+    --cream-dark: #EDE6D6;
+    --sand: #F0EAD8;
+    --white: #FDFCF8;
+    --text-dark: #1A1A16;
+    --text-mid: #3D3D38;
+    --text-muted: #6B6B62;
+    --text-light: #9B9B90;
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    font-weight: 300;
+    color: var(--text-dark);
+    background: var(--white);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ─────────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.4rem 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.4s, padding 0.4s, box-shadow 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(26,46,30,0.97);
+    padding: 1rem 3rem;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.3);
+  }
+  .nav-logo { display: flex; flex-direction: column; align-items: flex-start; text-decoration: none; }
+  .nav-logo-main {
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 500;
+    letter-spacing: 0.04em; color: var(--white); line-height: 1;
+  }
+  .nav-logo-sub {
+    font-family: var(--sans); font-size: 0.6rem; font-weight: 400;
+    letter-spacing: 0.22em; color: var(--gold-light); text-transform: uppercase; margin-top: 2px;
+  }
+  .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem; font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.78); text-decoration: none; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--green-deep) !important; background: var(--gold);
+    padding: 0.6rem 1.4rem; border-radius: 2px; text-decoration: none; transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--green-deep) !important; }
+
+  /* ── HERO ────────────────────────────────────────── */
+  #hero {
+    min-height: 100vh; background: var(--green-deep);
+    position: relative; display: flex; align-items: flex-end; overflow: hidden;
+  }
+
+  /* Ken Burns slideshow as hero background */
+  .hero-slideshow {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  .slide {
+    position: absolute; inset: 0;
+    background-size: cover; background-position: center;
+    opacity: 0; animation: slideShow 28s infinite;
+  }
+  .slide:nth-child(1) { animation-delay: 0s; }
+  .slide:nth-child(2) { animation-delay: 7s; }
+  .slide:nth-child(3) { animation-delay: 14s; }
+  .slide:nth-child(4) { animation-delay: 21s; }
+
+  /* CPG real photos — replace with local paths if hotlinking doesn't work */
+  .slide-1 { background-image: url('https://images.squarespace-cdn.com/content/v1/667acaf484dd555d3e7d52ee/6da3830f-2ea8-48e8-b3b3-a6373439c1c0/CPG+EVENTO-24.1.jpg'); }
+  .slide-2 { background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80&auto=format&fit=crop&crop=center'); }
+  .slide-3 { background-image: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=1800&q=80&auto=format&fit=crop'); }
+  .slide-4 { background-image: url('https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=1800&q=80&auto=format&fit=crop'); }
+
+  @keyframes slideShow {
+    0%   { opacity: 0; transform: scale(1.06); }
+    5%   { opacity: 1; }
+    25%  { opacity: 1; transform: scale(1.0); }
+    30%  { opacity: 0; transform: scale(1.0); }
+    100% { opacity: 0; }
+  }
+
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(26,46,30,0.25) 0%, rgba(26,46,30,0.1) 35%, rgba(26,46,30,0.65) 75%, rgba(26,46,30,0.96) 100%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    padding: 0 6rem 8rem; max-width: 780px;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--sans); font-size: 0.68rem; font-weight: 400;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.6rem; opacity: 0; animation: fadeUp 0.8s 0.4s ease-out forwards;
+  }
+  .hero-h1 {
+    font-family: var(--serif); font-size: clamp(3.2rem, 6vw, 5.4rem); font-weight: 300;
+    line-height: 1.08; color: var(--white); letter-spacing: -0.01em;
+    margin-bottom: 1.8rem; opacity: 0; animation: fadeUp 0.8s 0.6s ease-out forwards;
+  }
+  .hero-h1 em { font-style: italic; color: var(--gold-light); }
+  .hero-body {
+    font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.72);
+    max-width: 500px; margin-bottom: 2.8rem; line-height: 1.75;
+    opacity: 0; animation: fadeUp 0.8s 0.8s ease-out forwards;
+  }
+  .hero-actions {
+    display: flex; align-items: center; gap: 2rem;
+    opacity: 0; animation: fadeUp 0.8s 1.0s ease-out forwards;
+  }
+
+  .btn-primary {
+    display: inline-block; background: var(--gold); color: var(--green-deep);
+    font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none;
+    padding: 1.1rem 2.4rem; border-radius: 2px; transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    color: rgba(255,255,255,0.78); font-family: var(--sans); font-size: 0.8rem;
+    font-weight: 300; letter-spacing: 0.06em; text-decoration: none; transition: color 0.2s;
+  }
+  .btn-ghost:hover { color: var(--gold-light); }
+  .btn-ghost::after { content: '→'; font-size: 1rem; transition: transform 0.2s; }
+  .btn-ghost:hover::after { transform: translateX(4px); }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; right: 6rem;
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    opacity: 0; animation: fadeIn 0.8s 1.4s ease-out forwards;
+  }
+  .hero-scroll span {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4); writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+  .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ── GALLERY STRIP ───────────────────────────────── */
+  #galeria {
+    background: var(--green-deep);
+    padding: 0;
+    overflow: hidden;
+    height: 220px;
+    display: flex;
+  }
+  .gallery-track {
+    display: flex; gap: 3px;
+    animation: scrollTrack 40s linear infinite;
+    width: max-content;
+  }
+  .gallery-track:hover { animation-play-state: paused; }
+  @keyframes scrollTrack {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .gallery-item {
+    width: 300px; height: 220px; flex-shrink: 0;
+    background-size: cover; background-position: center;
+    filter: brightness(0.85);
+    transition: filter 0.3s;
+  }
+  .gallery-item:hover { filter: brightness(1.05); }
+
+  /* ── NUMBERS BAND ────────────────────────────────── */
+  #numeros {
+    background: var(--green-mid); padding: 3.2rem 6rem;
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  }
+  .num-item {
+    padding: 2rem 2.5rem; border-right: 1px solid rgba(255,255,255,0.1);
+    display: flex; flex-direction: column; align-items: flex-start;
+  }
+  .num-item:last-child { border-right: none; }
+  .num-big {
+    font-family: var(--serif); font-size: 3.2rem; font-weight: 300;
+    color: var(--gold); line-height: 1; margin-bottom: 0.3rem;
+  }
+  .num-label {
+    font-size: 0.7rem; font-weight: 400; letter-spacing: 0.16em;
+    text-transform: uppercase; color: rgba(255,255,255,0.55); line-height: 1.5;
+  }
+
+  /* ── SECTIONS GENERAL ────────────────────────────── */
+  section { scroll-margin-top: 80px; }
+  .section-eyebrow {
+    font-family: var(--sans); font-size: 0.65rem; font-weight: 400;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem;
+  }
+  .section-h2 {
+    font-family: var(--serif); font-size: clamp(2.4rem, 4vw, 3.8rem); font-weight: 300;
+    line-height: 1.12; color: var(--text-dark); letter-spacing: -0.01em; margin-bottom: 1.4rem;
+  }
+  .section-h2 em { font-style: italic; color: var(--green-mid); }
+  .section-h2.light { color: var(--white); }
+  .section-h2.light em { color: var(--gold-light); }
+  .section-body {
+    font-size: 1.05rem; font-weight: 300; color: var(--text-muted);
+    line-height: 1.8; max-width: 520px;
+  }
+  .section-body.light { color: rgba(255,255,255,0.65); }
+
+  /* ── EL LUGAR ────────────────────────────────────── */
+  #lugar { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; }
+  .lugar-img {
+    background: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80&auto=format&fit=crop') center/cover no-repeat;
+    min-height: 560px;
+  }
+  .lugar-content { background: var(--cream); padding: 7rem 6rem; display: flex; flex-direction: column; justify-content: center; }
+  .distance-pills { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2.4rem; }
+  .pill {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: var(--white); border: 1px solid rgba(0,0,0,0.08); border-radius: 2rem;
+    padding: 0.5rem 1.1rem; font-size: 0.8rem; font-weight: 400; color: var(--text-mid);
+  }
+  .pill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* ── LIFESTYLE ───────────────────────────────────── */
+  #lifestyle {
+    background: var(--green-deep); padding: 9rem 6rem;
+    position: relative; overflow: hidden;
+  }
+  #lifestyle::before {
+    content: ''; position: absolute; top: -100px; right: -80px;
+    width: 500px; height: 500px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(184,145,60,0.06), transparent 70%); pointer-events: none;
+  }
+  .lifestyle-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    margin-top: 5rem; align-items: start;
+  }
+  .lifestyle-feature {
+    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 2.4rem; margin-bottom: 3.2rem;
+  }
+  .lifestyle-feature:last-child { margin-bottom: 0; }
+  .lifestyle-feature h3 {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
+    color: var(--white); margin-bottom: 0.7rem;
+  }
+  .lifestyle-feature p {
+    font-size: 0.9rem; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.75;
+  }
+  .lifestyle-img-col { position: relative; }
+  .lifestyle-img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    background: url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=700&q=80&auto=format&fit=crop') center/cover no-repeat;
+    border-radius: 2px;
+  }
+  .lifestyle-img-tag {
+    position: absolute; bottom: -1.5rem; left: -2rem;
+    background: var(--gold); color: var(--green-deep);
+    font-family: var(--serif); font-size: 1.1rem; font-weight: 500; font-style: italic;
+    padding: 1.2rem 1.8rem; max-width: 220px; line-height: 1.35;
+  }
+
+  /* ── EL BARRIO ───────────────────────────────────── */
+  #barrio { background: var(--white); padding: 9rem 6rem; }
+  .barrio-top { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-bottom: 5rem; }
+  .amenities-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2rem;
+    margin-top: 4rem; border-top: 1px solid var(--cream-dark); padding-top: 4rem;
+  }
+  .amenity { display: flex; flex-direction: column; gap: 0.7rem; }
+  .amenity-icon {
+    width: 40px; height: 40px; background: var(--cream); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; margin-bottom: 0.3rem;
+  }
+  .amenity h4 {
+    font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark);
+  }
+  .amenity p { font-size: 0.85rem; font-weight: 300; color: var(--text-muted); line-height: 1.65; }
+
+  /* ── MASTERPLAN ──────────────────────────────────── */
+  #masterplan {
+    background: var(--green-deep); padding: 9rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: center;
+  }
+  .masterplan-form-wrap {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 4px; padding: 3rem;
+  }
+  .masterplan-form-title {
+    font-family: var(--serif); font-size: 1.5rem; font-weight: 300;
+    color: var(--white); margin-bottom: 0.5rem;
+  }
+  .masterplan-form-sub {
+    font-size: 0.82rem; color: rgba(255,255,255,0.45); margin-bottom: 2rem; line-height: 1.6;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block; font-size: 0.7rem; font-weight: 400;
+    letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 0.5rem;
+  }
+  .form-group input, .form-group select {
+    width: 100%; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px; padding: 0.85rem 1rem; font-family: var(--sans); font-size: 0.9rem;
+    font-weight: 300; color: var(--white); outline: none; transition: border-color 0.2s;
+  }
+  .form-group input::placeholder { color: rgba(255,255,255,0.25); }
+  .form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+  .form-group select option { background: var(--green-deep); color: var(--white); }
+  .form-submit {
+    width: 100%; background: var(--gold); color: var(--green-deep); border: none;
+    border-radius: 2px; padding: 1rem; font-family: var(--sans); font-size: 0.72rem;
+    font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+    margin-top: 0.5rem; transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+  .form-privacy {
+    font-size: 0.7rem; color: rgba(255,255,255,0.28); text-align: center;
+    margin-top: 1rem; line-height: 1.5;
+  }
+
+  /* ── CÓMO COMPRAR ────────────────────────────────── */
+  #como-comprar { background: var(--white); padding: 9rem 6rem; }
+  .modalities { display: grid; grid-template-columns: repeat(3,1fr); gap: 2.5rem; margin-top: 4.5rem; }
+  .modality-card {
+    border: 1px solid var(--cream-dark); border-radius: 4px; padding: 2.8rem 2.4rem;
+    position: relative; transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .modality-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.08); transform: translateY(-3px); }
+  .modality-card.featured { border-color: var(--gold); border-width: 2px; }
+  .modality-badge {
+    position: absolute; top: -12px; left: 2rem; background: var(--gold); color: var(--green-deep);
+    font-size: 0.62rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.25rem 0.9rem; border-radius: 2rem;
+  }
+  .modality-num {
+    font-family: var(--serif); font-size: 3.5rem; font-weight: 300;
+    color: var(--cream-dark); line-height: 1; margin-bottom: 0.8rem;
+  }
+  .modality-name {
+    font-family: var(--serif); font-size: 1.6rem; font-weight: 400;
+    color: var(--text-dark); margin-bottom: 1rem;
+  }
+  .modality-desc {
+    font-size: 0.88rem; font-weight: 300; color: var(--text-muted);
+    line-height: 1.75; margin-bottom: 1.6rem;
+  }
+  .modality-details { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .modality-details li {
+    font-size: 0.8rem; font-weight: 400; color: var(--text-mid);
+    padding-left: 1.2rem; position: relative;
+  }
+  .modality-details li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+
+  .modality-faq {
+    margin-top: 5rem; border-top: 1px solid var(--cream-dark); padding-top: 4rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .faq-item { padding: 2rem; background: var(--cream); border-radius: 4px; }
+  .faq-q {
+    font-family: var(--serif); font-size: 1.05rem; font-weight: 500;
+    color: var(--text-dark); margin-bottom: 0.7rem;
+  }
+  .faq-a { font-size: 0.85rem; font-weight: 300; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── CONTACTO ────────────────────────────────────── */
+  #contacto {
+    background: var(--sand); padding: 9rem 6rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 7rem; align-items: start;
+  }
+  .contact-form-wrap {
+    background: var(--white); border-radius: 4px; padding: 3.5rem;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+  }
+  .contact-form-title {
+    font-family: var(--serif); font-size: 1.8rem; font-weight: 300;
+    color: var(--text-dark); margin-bottom: 2rem;
+  }
+  .contact-form .form-group label { color: var(--text-muted); }
+  .contact-form .form-group input,
+  .contact-form .form-group select,
+  .contact-form .form-group textarea {
+    background: var(--cream); border: 1px solid var(--cream-dark); color: var(--text-dark);
+  }
+  .contact-form .form-group input::placeholder { color: var(--text-light); }
+  .contact-form .form-group input:focus,
+  .contact-form .form-group select:focus,
+  .contact-form .form-group textarea:focus { border-color: var(--green-mid); }
+  .contact-form .form-group textarea {
+    resize: vertical; min-height: 100px; font-family: var(--sans); width: 100%;
+    padding: 0.85rem 1rem; border-radius: 2px; font-size: 0.9rem; font-weight: 300; outline: none; transition: border-color 0.2s;
+  }
+  .contact-form .form-group select option { background: #fff; color: var(--text-dark); }
+  .contact-form .form-submit { background: var(--green-mid); color: var(--white); }
+  .contact-form .form-submit:hover { background: var(--green-light); }
+  .contact-info { padding-top: 1rem; }
+  .contact-team-title {
+    font-size: 0.65rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .contact-team-name {
+    font-family: var(--serif); font-size: 2rem; font-weight: 300;
+    color: var(--text-dark); margin-bottom: 0.5rem; line-height: 1.2;
+  }
+  .contact-info-line { font-size: 0.88rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
+  .contact-detail {
+    display: flex; align-items: center; gap: 0.8rem;
+    font-size: 0.88rem; color: var(--text-mid); margin-bottom: 0.8rem;
+  }
+  .contact-detail-icon {
+    width: 32px; height: 32px; background: var(--cream); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .contact-divider { width: 48px; height: 2px; background: var(--gold); margin: 2.4rem 0; }
+  .contact-address { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+
+  /* ── FOOTER ──────────────────────────────────────── */
+  footer {
+    background: var(--green-deep); padding: 4rem 6rem;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-logo {
+    font-family: var(--serif); font-size: 1.05rem; font-weight: 400;
+    color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
+  }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.28); letter-spacing: 0.06em; }
+
+  /* ── SUCCESS ─────────────────────────────────────── */
+  .success-msg {
+    display: none; text-align: center; padding: 2rem;
+    font-family: var(--serif); font-size: 1.2rem; font-weight: 300; font-style: italic;
+    color: var(--gold-light); line-height: 1.5;
+  }
+  .success-msg.show { display: block; }
+
+  /* ── RESPONSIVE ──────────────────────────────────── */
+  @media (max-width: 1100px) {
+    nav { padding: 1.2rem 2.4rem; }
+    nav.scrolled { padding: 0.9rem 2.4rem; }
+    .hero-content { padding: 0 3rem 6rem; }
+    #numeros { padding: 2rem 2.4rem; }
+    .num-item { padding: 1.5rem 1.5rem; }
+    #lugar .lugar-content, #barrio, #lifestyle, #masterplan, #como-comprar, #contacto { padding: 5rem 3rem; }
+  }
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    nav { padding: 1rem 1.5rem; }
+    .hero-content { padding: 0 1.5rem 5rem; max-width: 100%; }
+    .hero-scroll { display: none; }
+    #numeros { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
+    .num-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    #galeria { height: 140px; }
+    .gallery-item { width: 200px; height: 140px; }
+    #lugar { grid-template-columns: 1fr; }
+    .lugar-img { min-height: 280px; }
+    .lugar-content { padding: 4rem 1.5rem; }
+    .lifestyle-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .lifestyle-img { aspect-ratio: 4/3; }
+    .barrio-top { grid-template-columns: 1fr; gap: 2rem; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; }
+    #masterplan { grid-template-columns: 1fr; gap: 3rem; }
+    .modalities { grid-template-columns: 1fr; }
+    .modality-faq { grid-template-columns: 1fr; }
+    #contacto { grid-template-columns: 1fr; gap: 3rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2.5rem 1.5rem; }
+    #barrio, #como-comprar, #lifestyle, #masterplan, #contacto { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <a class="nav-logo" href="#hero">
+    <span class="nav-logo-main">Carlos Paz Golf</span>
+    <span class="nav-logo-sub">Country Club · San Antonio de Arredondo</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#lugar">El lugar</a></li>
+    <li><a href="#lifestyle">El estilo de vida</a></li>
+    <li><a href="#barrio">El barrio</a></li>
+    <li><a href="#masterplan">Masterplan</a></li>
+    <li><a href="#como-comprar">Cómo comprar</a></li>
+    <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-slideshow">
+    <div class="slide slide-1"></div>
+    <div class="slide slide-2"></div>
+    <div class="slide slide-3"></div>
+    <div class="slide slide-4"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Campo de golf · 18 hoyos · Sierras de Córdoba</p>
+    <h1 class="hero-h1">Tu próximo capítulo.<br><em>Sin el trabajo de siempre.</em></h1>
+    <p class="hero-body">A menos de 40 minutos de la circunvalación, un barrio privado donde más de 80 familias ya eligieron vivir rodeadas de sierras, verde y calma.</p>
+    <div class="hero-actions">
+      <a href="#masterplan" class="btn-primary">Descargá el Masterplan</a>
+      <a href="#lifestyle" class="btn-ghost">Conocé el barrio</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PHOTO STRIP / VIDEO REEL -->
+<div id="galeria">
+  <div class="gallery-track" id="gallery-track">
+    <!-- Repeated twice for seamless loop -->
+    <div class="gallery-item" style="background-image:url('https://images.squarespace-cdn.com/content/v1/667acaf484dd555d3e7d52ee/6da3830f-2ea8-48e8-b3b3-a6373439c1c0/CPG+EVENTO-24.1.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=600&q=75')"></div>
+    <!-- Duplicate for seamless loop -->
+    <div class="gallery-item" style="background-image:url('https://images.squarespace-cdn.com/content/v1/667acaf484dd555d3e7d52ee/6da3830f-2ea8-48e8-b3b3-a6373439c1c0/CPG+EVENTO-24.1.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&q=75')"></div>
+    <div class="gallery-item" style="background-image:url('https://images.unsplash.com/photo-1502005229762-cf1b2da7c5d6?w=600&q=75')"></div>
+  </div>
+</div>
+
+<!-- NUMEROS -->
+<div id="numeros">
+  <div class="num-item">
+    <div class="num-big">+80</div>
+    <div class="num-label">Familias con<br>casa propia</div>
+  </div>
+  <div class="num-item">
+    <div class="num-big">33 ha</div>
+    <div class="num-label">Campo de golf<br>18 hoyos</div>
+  </div>
+  <div class="num-item">
+    <div class="num-big">108 ha</div>
+    <div class="num-label">Predio entre<br>bosques y sierras</div>
+  </div>
+  <div class="num-item">
+    <div class="num-big">&lt;40'</div>
+    <div class="num-label">De la circunvalación<br>de Córdoba</div>
+  </div>
+</div>
+
+<!-- EL LUGAR -->
+<section id="lugar">
+  <div class="lugar-img"></div>
+  <div class="lugar-content">
+    <p class="section-eyebrow">Ubicación</p>
+    <h2 class="section-h2">Cerca de todo.<br><em>Lejos del ruido.</em></h2>
+    <p class="section-body">
+      San Antonio de Arredondo, en el corazón de las Sierras de Córdoba. A menos de 40 minutos de la circunvalación, en la nueva autovía a Punilla, a pasos del corredor serrano más consolidado de la provincia.
+    </p>
+    <div class="distance-pills">
+      <div class="pill"><div class="pill-dot"></div>Menos de 40' de la circunvalación</div>
+      <div class="pill"><div class="pill-dot"></div>5 km de Villa Carlos Paz</div>
+      <div class="pill"><div class="pill-dot"></div>Acceso directo autovía a Punilla</div>
+      <div class="pill"><div class="pill-dot"></div>8 km del Lago San Roque</div>
+      <div class="pill"><div class="pill-dot"></div>Sierras Chicas y Grandes</div>
+    </div>
+  </div>
+</section>
+
+<!-- EL ESTILO DE VIDA -->
+<section id="lifestyle">
+  <p class="section-eyebrow">El estilo de vida</p>
+  <h2 class="section-h2 light" style="max-width:600px;">No vendemos lotes.<br>Vendemos <em>las sierras sin fricciones.</em></h2>
+  <div class="lifestyle-grid">
+    <div>
+      <div class="lifestyle-feature">
+        <h3>Un campo de golf que es también un paisaje</h3>
+        <p>33 hectáreas de verde, fairways y vistas panorámicas a las sierras. No hace falta jugar golf para entender lo que eso vale desde la galería de tu casa.</p>
+      </div>
+      <div class="lifestyle-feature">
+        <h3>Club House con propuesta gastronómica</h3>
+        <p>Un espacio para comer bien sin salir del barrio. Para que los domingos en familia sean exactamente eso: domingos en familia, no logística.</p>
+      </div>
+      <div class="lifestyle-feature">
+        <h3>Una comunidad que ya eligió este ritmo</h3>
+        <p>Más de 80 familias que construyeron su casa y eligieron quedarse. Vecinos permanentes, no inversores. Eso cambia todo el ambiente del barrio.</p>
+      </div>
+    </div>
+    <div class="lifestyle-img-col">
+      <div class="lifestyle-img"></div>
+      <div class="lifestyle-img-tag">"Una segunda casa que no se siente como un segundo trabajo."</div>
+    </div>
+  </div>
+</section>
+
+<!-- EL BARRIO -->
+<section id="barrio">
+  <div class="barrio-top">
+    <div>
+      <p class="section-eyebrow">Infraestructura</p>
+      <h2 class="section-h2">El barrio que<br><em>ya está listo.</em></h2>
+    </div>
+    <div>
+      <p class="section-body" style="margin-top:1rem;">
+        Lotes de 800 a 2.200 m² con posesión inmediata. Toda la infraestructura construida. Sin esperas ni sorpresas.
+      </p>
+    </div>
+  </div>
+  <div class="amenities-grid">
+    <div class="amenity">
+      <div class="amenity-icon">💧</div>
+      <h4>Red de agua potable</h4>
+      <p>Sistema completo de agua potable interno.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">⚡</div>
+      <h4>Cableado subterráneo</h4>
+      <p>Eléctrico y de conectividad enterrado. Sin cables aéreos, sin ruido visual.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">🌿</div>
+      <h4>Alumbrado LED</h4>
+      <p>Iluminación de senderos y arterias. Cálida, eficiente, integrada.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">🔒</div>
+      <h4>Vigilancia 24/7</h4>
+      <p>Acceso controlado y monitoreo perimetral permanente.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">🌱</div>
+      <h4>Cerco perimetral</h4>
+      <p>Barrio cerrado con acceso único y seguro.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">🏌️</div>
+      <h4>Golf 18 hoyos</h4>
+      <p>Campo de 33 ha en uso activo por socios y vecinos del barrio.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">🍽️</div>
+      <h4>Club House</h4>
+      <p>Propuesta gastronómica y espacio social disponible para residentes.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">🛤️</div>
+      <h4>Arterias naturales</h4>
+      <p>Diseñadas para integrarse al paisaje serrano sin interrumpir lo natural.</p>
+    </div>
+    <div class="amenity">
+      <div class="amenity-icon">🏠</div>
+      <h4>Red cloacal</h4>
+      <p>Sistema cloacal interno completo y en funcionamiento.</p>
+    </div>
+  </div>
+</section>
+
+<!-- MASTERPLAN -->
+<section id="masterplan">
+  <div>
+    <p class="section-eyebrow">Masterplan</p>
+    <h2 class="section-h2 light">Elegí tu lote<br><em>con información completa.</em></h2>
+    <p class="section-body light" style="margin-top:1.4rem;">
+      Descargá el plano completo del barrio con la disponibilidad actualizada de lotes, dimensiones, orientación y ubicación dentro del predio.
+    </p>
+    <p class="section-body light" style="margin-top:1rem; font-size:0.82rem;">
+      Lotes disponibles de 800 a 2.200 m². Precios desde USD 80.000. El equipo comercial te contacta dentro de las 24 horas hábiles.
+    </p>
+  </div>
+  <div class="masterplan-form-wrap">
+    <p class="masterplan-form-title">Recibí el Masterplan</p>
+    <p class="masterplan-form-sub">Completá tus datos y te enviamos el plano del barrio con la disponibilidad actualizada.</p>
+    <form id="masterplan-form">
+      <div class="form-group">
+        <label>Nombre y apellido</label>
+        <input type="text" placeholder="Tu nombre completo" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" placeholder="+54 9 351 000 0000">
+      </div>
+      <div class="form-group">
+        <label>¿Qué te interesa?</label>
+        <select>
+          <option value="">Seleccioná una opción</option>
+          <option>Conocer lotes disponibles</option>
+          <option>Plan Constructor</option>
+          <option>Planes de financiación</option>
+          <option>Visitar el barrio</option>
+        </select>
+      </div>
+      <button type="submit" class="form-submit">Descargar Masterplan →</button>
+      <p class="form-privacy">Tu información es confidencial. No compartimos tus datos con terceros.</p>
+    </form>
+    <div class="success-msg" id="masterplan-success">
+      Gracias. El equipo de Carlos Paz Golf se comunicará con vos dentro de las 24 horas hábiles con el Masterplan completo.
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO COMPRAR -->
+<section id="como-comprar">
+  <p class="section-eyebrow">Modalidades de compra</p>
+  <h2 class="section-h2">Tres formas de<br><em>hacer tu lote realidad.</em></h2>
+
+  <div class="modalities">
+
+    <div class="modality-card">
+      <div class="modality-num">01</div>
+      <div class="modality-name">Contado</div>
+      <p class="modality-desc">La modalidad más directa para quienes tienen decidida su inversión y quieren cerrar rápido.</p>
+      <ul class="modality-details">
+        <li>Boleto inmediato y posesión del lote</li>
+        <li>Gestión completa a cargo del equipo CPG</li>
+        <li>Sin comisiones ni gastos adicionales</li>
+        <li>Precio final informado por el equipo comercial</li>
+      </ul>
+    </div>
+
+    <div class="modality-card featured">
+      <div class="modality-badge">Más consultada</div>
+      <div class="modality-num">02</div>
+      <div class="modality-name">Financiado</div>
+      <p class="modality-desc">Congelás el precio en dólares de tu terreno con un 25% de adelanto y cancelás el resto en cuotas trimestrales en dólares, sin interés.</p>
+      <ul class="modality-details">
+        <li>25% de adelanto sobre el boleto</li>
+        <li>Saldo en cuotas trimestrales en dólares</li>
+        <li>Sin interés · Precio congelado en USD</li>
+        <li>Planes a 12 o 24 meses</li>
+        <li>Posesión inmediata del lote</li>
+      </ul>
+    </div>
+
+    <div class="modality-card">
+      <div class="modality-num">03</div>
+      <div class="modality-name">Plan Constructor</div>
+      <p class="modality-desc">Congelás el precio de tu lote hoy y usás el capital para construir tu casa. El saldo se cancela al terminar la obra o dentro de los 2 años, lo que suceda primero.</p>
+      <ul class="modality-details">
+        <li>25% de adelanto sobre el valor del lote</li>
+        <li>75% restante: hasta 2 años o fin de obra</li>
+        <li>Capital disponible para invertir en la construcción</li>
+        <li>Posesión inmediata del terreno</li>
+        <li>Sin interés sobre el saldo pendiente</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="modality-faq">
+    <div class="faq-item">
+      <p class="faq-q">¿Se puede financiar en pesos?</p>
+      <p class="faq-a">Sí. Existen alternativas de pago en pesos. El equipo comercial te presenta las opciones disponibles según el momento de la operación.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">¿Se aceptan inmuebles o bienes como parte de pago?</p>
+      <p class="faq-a">No. Actualmente las operaciones se realizan exclusivamente en efectivo o financiación propia del proyecto. No se reciben inmuebles, vehículos ni otros bienes como parte de pago.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">¿Hay costos adicionales al precio del lote?</p>
+      <p class="faq-a">No. Carlos Paz Golf se hace cargo de todos los gastos de la operación. El precio informado es el precio final. Sin sorpresas.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">¿Hay comisión de inmobiliaria o intermediario?</p>
+      <p class="faq-a">No. La comercialización es directa a través del equipo institucional de Carlos Paz Golf. El precio del lote incluye todos los gastos de la operación. No hay comisión involucrada.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="contact-info">
+    <p class="contact-team-title">Equipo comercial</p>
+    <h3 class="contact-team-name">Carlos Paz Golf<br>Country Club</h3>
+    <p class="contact-info-line">
+      Nuestro equipo atiende consultas de lunes a viernes de 9 a 18 hs, y fines de semana con turno previo. Respondemos dentro de las 24 horas hábiles.
+    </p>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">📞</div>
+      <span>+54 9 351 XXX-XXXX</span>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">✉️</div>
+      <span>comercial@carlospazgolf.com</span>
+    </div>
+    <div class="contact-detail">
+      <div class="contact-detail-icon">📍</div>
+      <span>Ruta Prov. N° 48, Camino a las Jarillas<br>San Antonio de Arredondo, Córdoba</span>
+    </div>
+    <div class="contact-divider"></div>
+    <p class="contact-address">
+      Oficina comercial en el ingreso principal del barrio.<br>
+      Visitas con turno previo, martes a domingo.<br><br>
+      <em style="font-family: var(--serif); font-size: 1rem; color: var(--text-mid);">
+        "El enemigo no es la distancia. Es la complejidad.<br>Y para eso estamos nosotros."
+      </em>
+    </p>
+  </div>
+  <div class="contact-form-wrap">
+    <p class="contact-form-title">Hablemos de tu lote</p>
+    <form id="contact-form" class="contact-form">
+      <div class="form-group">
+        <label>Nombre y apellido</label>
+        <input type="text" placeholder="Tu nombre completo" required>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label>Teléfono</label>
+        <input type="tel" placeholder="+54 9 351 000 0000" required>
+      </div>
+      <div class="form-group">
+        <label>Me interesa</label>
+        <select required>
+          <option value="">Seleccioná una opción</option>
+          <option>Conocer lotes disponibles y precios</option>
+          <option>Plan Constructor</option>
+          <option>Financiación en cuotas</option>
+          <option>Visitar el barrio</option>
+          <option>Información general</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>¿Algo que quieras contarnos? (opcional)</label>
+        <textarea placeholder="Contanos brevemente qué estás buscando."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Enviar consulta →</button>
+      <p class="form-privacy" style="color: var(--text-light); font-size:0.7rem;">
+        Tu información es confidencial. No compartimos tus datos con terceros.
+      </p>
+    </form>
+    <div class="success-msg" id="contact-success" style="color: var(--green-mid);">
+      Gracias por tu consulta. Un integrante de nuestro equipo se comunicará con vos dentro de las 24 horas hábiles.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Carlos Paz Golf Country Club</div>
+  <div class="footer-copy">© 2025 Carlos Paz Golf · San Antonio de Arredondo, Córdoba, Argentina</div>
+</footer>
+
+<script>
+  // Nav scroll behavior
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Form handlers
+  document.getElementById('masterplan-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('masterplan-success').classList.add('show');
+  });
+  document.getElementById('contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    this.style.display = 'none';
+    document.getElementById('contact-success').classList.add('show');
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.amenity, .modality-card, .faq-item, .num-item, .lifestyle-feature');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
