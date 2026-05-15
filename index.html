@@ -73,6 +73,48 @@
   }
   .nav-cta:hover { background: var(--gold-light) !important; color: var(--green-deep) !important; }
 
+  /* ── HAMBURGER ───────────────────────────────────── */
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 6px; z-index: 201;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 1.5px;
+    background: var(--white); border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: center;
+  }
+  .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  /* ── MOBILE NAV OVERLAY ──────────────────────────── */
+  .nav-overlay {
+    display: none; position: fixed; inset: 0; z-index: 200;
+    background: var(--green-deep);
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 0;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .nav-overlay.open { display: flex; opacity: 1; }
+  .nav-overlay ul { list-style: none; text-align: center; }
+  .nav-overlay ul li { border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .nav-overlay ul li:first-child { border-top: 1px solid rgba(255,255,255,0.07); }
+  .nav-overlay ul li a {
+    display: block; padding: 1.4rem 2rem;
+    font-family: var(--serif); font-size: 1.8rem; font-weight: 300;
+    color: rgba(255,255,255,0.85); text-decoration: none;
+    letter-spacing: 0.02em; transition: color 0.2s;
+  }
+  .nav-overlay ul li a:hover { color: var(--gold-light); }
+  .nav-overlay ul li a.nav-cta-overlay {
+    font-family: var(--sans); font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    background: var(--gold); color: var(--green-deep);
+    border-radius: 2px; margin: 2rem auto 0; display: inline-block;
+    padding: 1rem 2.4rem;
+  }
+
   /* ── HERO ────────────────────────────────────────── */
   #hero {
     min-height: 100vh; background: var(--green-deep);
@@ -92,10 +134,10 @@
   .slide:nth-child(3) { animation-delay: 14s; }
   .slide:nth-child(4) { animation-delay: 21s; }
 
-  .slide-1 { background-image: url('img/foto-01.jpg'); }
-  .slide-2 { background-image: url('img/foto-02.jpg'); }
-  .slide-3 { background-image: url('img/foto-03.jpg'); }
-  .slide-4 { background-image: url('img/foto-04.jpg'); }
+  .slide-1 { background-image: url('foto-01.jpg'); }
+  .slide-2 { background-image: url('foto-02.jpg'); }
+  .slide-3 { background-image: url('foto-03.jpg'); }
+  .slide-4 { background-image: url('foto-04.jpg'); }
 
   @keyframes slideShow {
     0%   { opacity: 0; transform: scale(1.06); }
@@ -236,7 +278,7 @@
   /* ── EL LUGAR ────────────────────────────────────── */
   #lugar { display: grid; grid-template-columns: 1fr 1fr; min-height: 640px; }
   .lugar-img {
-    background: url('img/foto-02.jpg') center/cover no-repeat;
+    background: url('foto-02.jpg') center/cover no-repeat;
     min-height: 560px;
   }
   .lugar-content { background: var(--cream); padding: 7rem 6rem; display: flex; flex-direction: column; justify-content: center; }
@@ -277,7 +319,7 @@
   .lifestyle-img-col { position: relative; }
   .lifestyle-img {
     width: 100%; aspect-ratio: 3/4; object-fit: cover;
-    background: url('img/foto-01.jpg') center/cover no-repeat;
+    background: url('foto-01.jpg') center/cover no-repeat;
     border-radius: 2px;
   }
   .lifestyle-img-tag {
@@ -295,11 +337,19 @@
     margin-top: 4rem; border-top: 1px solid var(--cream-dark); padding-top: 4rem;
   }
   .amenity { display: flex; flex-direction: column; gap: 0.7rem; }
+
+  /* ── MINIMALIST AMENITY ICON ─────────────────────── */
   .amenity-icon {
-    width: 40px; height: 40px; background: var(--cream); border-radius: 50%;
+    width: 40px; height: 40px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.1rem; margin-bottom: 0.3rem;
+    margin-bottom: 0.3rem;
   }
+  .amenity-icon svg {
+    width: 22px; height: 22px;
+    stroke: var(--green-mid); fill: none;
+    stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round;
+  }
+
   .amenity h4 {
     font-family: var(--sans); font-size: 0.78rem; font-weight: 500;
     letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark);
@@ -376,9 +426,13 @@
   .modality-details { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
   .modality-details li {
     font-size: 0.8rem; font-weight: 400; color: var(--text-mid);
-    padding-left: 1.2rem; position: relative;
+    padding-left: 1rem; position: relative; line-height: 1.5;
   }
-  .modality-details li::before { content: '—'; position: absolute; left: 0; color: var(--gold); font-size: 0.7rem; }
+  .modality-details li::before {
+    content: ''; position: absolute; left: 0; top: 0.55em;
+    width: 5px; height: 5px; border-radius: 50%;
+    background: var(--gold);
+  }
 
   .modality-faq {
     margin-top: 5rem; border-top: 1px solid var(--cream-dark); padding-top: 4rem;
@@ -437,7 +491,11 @@
   }
   .contact-detail-icon {
     width: 32px; height: 32px; background: var(--cream); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .contact-detail-icon svg {
+    width: 15px; height: 15px; stroke: var(--green-mid); fill: none;
+    stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
   }
   .contact-divider { width: 48px; height: 2px; background: var(--gold); margin: 2.4rem 0; }
   .contact-address { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
@@ -469,30 +527,82 @@
     .hero-content { padding: 0 3rem 6rem; }
     #numeros { padding: 2rem 2.4rem; }
     .num-item { padding: 1.5rem 1.5rem; }
-    #lugar .lugar-content, #barrio, #lifestyle, #masterplan, #como-comprar, #contacto { padding: 5rem 3rem; }
+    #lugar .lugar-content,
+    #barrio, #lifestyle, #masterplan,
+    #como-comprar, #contacto { padding: 5rem 3rem; }
+    #exclusividad { padding: 5rem 3rem !important; }
+    #golf { padding: 6rem 3rem !important; }
+    #restaurante { padding: 5rem 3rem !important; }
   }
+
   @media (max-width: 860px) {
+    /* Nav */
     .nav-links { display: none; }
+    .nav-hamburger { display: flex; }
     nav { padding: 1rem 1.5rem; }
+    nav.scrolled { padding: 0.9rem 1.5rem; }
+
+    /* Hero */
     .hero-content { padding: 0 1.5rem 5rem; max-width: 100%; }
     .hero-scroll { display: none; }
+
+    /* Numbers */
     #numeros { grid-template-columns: 1fr 1fr; padding: 2rem 1.5rem; }
-    .num-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .num-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.1); padding: 1.5rem 1rem; }
+    .num-item:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.1); }
+
+    /* Gallery */
     #galeria { height: 140px; }
     .gallery-item { width: 200px; height: 140px; }
+
+    /* El Lugar */
     #lugar { grid-template-columns: 1fr; }
-    .lugar-img { min-height: 280px; }
+    .lugar-img { min-height: 260px; }
     .lugar-content { padding: 4rem 1.5rem; }
-    .lifestyle-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+    /* Exclusividad */
+    #exclusividad { padding: 4rem 1.5rem !important; }
+    #exclusividad .excl-grid { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
+
+    /* Lifestyle */
+    #lifestyle { padding: 5rem 1.5rem; }
+    .lifestyle-grid { grid-template-columns: 1fr; gap: 3rem; margin-top: 3rem; }
     .lifestyle-img { aspect-ratio: 4/3; }
-    .barrio-top { grid-template-columns: 1fr; gap: 2rem; }
-    .amenities-grid { grid-template-columns: 1fr 1fr; }
-    #masterplan { grid-template-columns: 1fr; gap: 3rem; }
-    .modalities { grid-template-columns: 1fr; }
+    .lifestyle-img-col { padding-bottom: 2rem; }
+
+    /* Barrio */
+    #barrio { padding: 5rem 1.5rem; }
+    .barrio-top { grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 3rem; }
+    .amenities-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+
+    /* Golf */
+    #golf { padding: 5rem 1.5rem !important; }
+
+    /* Restaurante */
+    #restaurante { grid-template-columns: 1fr !important; padding: 4rem 1.5rem !important; gap: 3rem !important; }
+    #restaurante > div:first-child { min-height: 240px !important; }
+
+    /* Masterplan */
+    #masterplan { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+
+    /* Como comprar */
+    #como-comprar { padding: 5rem 1.5rem; }
+    .modalities { grid-template-columns: 1fr; gap: 2rem; }
     .modality-faq { grid-template-columns: 1fr; }
-    #contacto { grid-template-columns: 1fr; gap: 3rem; }
+
+    /* Contacto */
+    #contacto { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+
+    /* Footer */
     footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2.5rem 1.5rem; }
-    #barrio, #como-comprar, #lifestyle, #masterplan, #contacto { padding: 5rem 1.5rem; }
+  }
+
+  @media (max-width: 600px) {
+    .amenities-grid { grid-template-columns: 1fr; }
+    .num-item:nth-child(odd) { border-right: none; }
+    #numeros { grid-template-columns: 1fr; }
+    .num-item { border-bottom: 1px solid rgba(255,255,255,0.1); border-right: none !important; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 1.2rem; }
   }
 </style>
 </head>
@@ -513,7 +623,23 @@
     <li><a href="#como-comprar">Cómo comprar</a></li>
     <li><a href="#contacto" class="nav-cta">Hablemos</a></li>
   </ul>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- MOBILE NAV OVERLAY -->
+<div class="nav-overlay" id="nav-overlay">
+  <ul>
+    <li><a href="#lugar" class="nav-overlay-link">El lugar</a></li>
+    <li><a href="#lifestyle" class="nav-overlay-link">El estilo de vida</a></li>
+    <li><a href="#barrio" class="nav-overlay-link">El barrio</a></li>
+    <li><a href="#golf" class="nav-overlay-link">Golf</a></li>
+    <li><a href="#masterplan" class="nav-overlay-link">Masterplan</a></li>
+    <li><a href="#como-comprar" class="nav-overlay-link">Cómo comprar</a></li>
+  </ul>
+  <a href="#contacto" class="nav-cta-overlay nav-overlay-link">Hablemos</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -542,25 +668,24 @@
 <!-- PHOTO STRIP -->
 <div id="galeria">
   <div class="gallery-track" id="gallery-track">
-    <div class="gallery-item" style="background-image:url('img/foto-01.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-02.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-03.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-04.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-05.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-06.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-07.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-08.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-09.jpg')"></div>
-    <!-- duplicado para loop continuo -->
-    <div class="gallery-item" style="background-image:url('img/foto-01.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-02.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-03.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-04.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-05.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-06.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-07.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-08.jpg')"></div>
-    <div class="gallery-item" style="background-image:url('img/foto-09.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-01.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-02.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-03.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-04.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-05.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-06.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-07.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-08.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-09.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-01.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-02.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-03.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-04.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-05.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-06.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-07.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-08.jpg')"></div>
+    <div class="gallery-item" style="background-image:url('foto-09.jpg')"></div>
   </div>
 </div>
 
@@ -606,7 +731,7 @@
 <!-- EXCLUSIVIDAD -->
 <section id="exclusividad" style="background:var(--cream); padding: 7rem 6rem; overflow:hidden; position:relative;">
   <div style="position:absolute; top:0; left:6rem; width:1px; height:100%; background:var(--cream-dark);"></div>
-  <div style="display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; position:relative; z-index:1;">
+  <div class="excl-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; position:relative; z-index:1;">
     <div>
       <p class="section-eyebrow">Un destino que todos visitan. Vos ya vivís acá.</p>
       <h2 class="section-h2" style="margin-bottom:2rem;">Las Sierras de Córdoba,<br><em>sin el turismo masivo.</em></h2>
@@ -622,7 +747,7 @@
           <div style="width:2px; flex-shrink:0; background:var(--green-mid); margin-top:0.3rem; min-height:100%;"></div>
           <div>
             <p style="font-family:var(--serif); font-size:1.05rem; font-weight:500; color:var(--text-dark); margin-bottom:0.3rem;">Con la paz y exclusividad de quien es local, no turista.</p>
-            <p style="font-size:0.88rem; font-weight:300; color:var(--text-muted); line-height:1.7;">Desde Carlos Paz Golf accedés a todos esos servicios sin ninguno de sus costos: sin la masividad, sin la temporada, sin competir por un lugar. Disfrutás un destino turístico de primer nivel siendo vecino — con la tranquilidad y privacidad que eso implica.</p>
+            <p style="font-size:0.88rem; font-weight:300; color:var(--text-muted); line-height:1.7;">Desde Carlos Paz Golf accedés a todos esos servicios sin ninguno de sus costos: sin la masividad, sin la temporada, sin competir por un lugar. Disfrutás un destino turístico de primer nivel siendo vecino, con la tranquilidad y privacidad que eso implica.</p>
           </div>
         </div>
       </div>
@@ -651,12 +776,6 @@
       </div>
     </div>
   </div>
-  <style>
-    @media (max-width: 860px) {
-      #exclusividad { padding: 5rem 1.5rem; }
-      #exclusividad > div { grid-template-columns: 1fr !important; gap: 2.5rem !important; }
-    }
-  </style>
 </section>
 
 <!-- EL ESTILO DE VIDA -->
@@ -699,58 +818,85 @@
     </div>
   </div>
   <div class="amenities-grid">
+
     <div class="amenity">
-      <div class="amenity-icon">💧</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      </div>
       <h4>Red de agua potable</h4>
       <p>Sistema completo de agua potable interno.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">⚡</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+      </div>
       <h4>Cableado subterráneo</h4>
       <p>Eléctrico y de conectividad enterrado. Sin cables aéreos, sin ruido visual.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">🌿</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="2" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22" y2="12"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></svg>
+      </div>
       <h4>Alumbrado LED</h4>
       <p>Iluminación de senderos y arterias. Cálida, eficiente, integrada.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">🔒</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+      </div>
       <h4>Vigilancia 24/7</h4>
       <p>Acceso controlado y monitoreo perimetral permanente.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">🌱</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
       <h4>Cerco perimetral</h4>
       <p>Barrio cerrado con acceso único y seguro.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">🏌️</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><line x1="4" y1="21" x2="4" y2="3"/><polyline points="4 8 16 4 16 12 4 12"/><circle cx="18" cy="19" r="2"/><line x1="4" y1="19" x2="16" y2="19"/></svg>
+      </div>
       <h4>Golf 18 hoyos</h4>
       <p>Campo de 33 ha en uso activo por socios y vecinos del barrio.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">🍽️</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l2-7 2.5 7"/><line x1="1.5" y1="6" x2="6.5" y2="6"/><line x1="7.5" y1="2" x2="7.5" y2="22"/><path d="M20.5 5a2.5 2.5 0 0 0-5 0c0 2.5 5 5 5 5s5-2.5 5-5a2.5 2.5 0 0 0-5 0z"/><line x1="20.5" y1="22" x2="20.5" y2="10"/></svg>
+      </div>
       <h4>Club House</h4>
       <p>Propuesta gastronómica y espacio social disponible para residentes.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">🛤️</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 17c3-5 6-7 9-7s6 2 9-2"/><path d="M3 12c2-3 5-5 9-5"/></svg>
+      </div>
       <h4>Arterias naturales</h4>
       <p>Diseñadas para integrarse al paisaje serrano sin interrumpir lo natural.</p>
     </div>
+
     <div class="amenity">
-      <div class="amenity-icon">🏠</div>
+      <div class="amenity-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
       <h4>Red cloacal</h4>
       <p>Sistema cloacal interno completo y en funcionamiento.</p>
     </div>
+
   </div>
 </section>
 
 <!-- GOLF -->
 <section id="golf" style="background: var(--cream); padding: 9rem 6rem; overflow: hidden; position: relative;">
 
-  <!-- Número decorativo de fondo -->
   <div style="
     position: absolute; top: 3rem; right: 4rem;
     font-family: var(--serif); font-size: 18rem; font-weight: 300;
@@ -760,8 +906,7 @@
 
   <div style="position: relative; z-index: 1;">
 
-    <!-- Encabezado -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-bottom: 6rem; align-items: end;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; margin-bottom: 6rem; align-items: end;" class="golf-header-grid">
       <div>
         <p class="section-eyebrow">Campo de golf</p>
         <h2 class="section-h2">33 hectáreas que<br><em>nadie te puede quitar.</em></h2>
@@ -775,12 +920,11 @@
       </div>
     </div>
 
-    <!-- Stats -->
     <div style="
       display: grid; grid-template-columns: repeat(3, 1fr);
       border: 1px solid var(--cream-dark); border-radius: 4px;
       margin-bottom: 6rem; background: var(--white);
-    ">
+    " class="golf-stats-grid">
       <div style="padding: 2.4rem 2.8rem; border-right: 1px solid var(--cream-dark);">
         <div style="font-family: var(--serif); font-size: 2.8rem; font-weight: 300; color: var(--green-mid); line-height: 1; margin-bottom: 0.4rem;">18</div>
         <div style="font-size: 0.7rem; font-weight: 400; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5;">Hoyos</div>
@@ -795,13 +939,12 @@
       </div>
     </div>
 
-    <!-- Imagen + features -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;" class="golf-features-grid">
 
       <div style="position: relative;">
         <div style="
           width: 100%; aspect-ratio: 4/3;
-          background: url('img/foto-01.jpg') center/cover no-repeat;
+          background: url('foto-01.jpg') center/cover no-repeat;
           border-radius: 4px;
         "></div>
         <div style="
@@ -815,12 +958,13 @@
         </div>
       </div>
 
-      <!-- Features del campo -->
       <div style="display: flex; flex-direction: column; gap: 0;">
 
         <div style="border-top: 1px solid var(--cream-dark); padding: 2rem 0;">
           <div style="display: flex; align-items: flex-start; gap: 1.4rem;">
-            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--green-deep); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; margin-top: 0.15rem;">🌿</div>
+            <div style="width: 36px; height: 36px; flex-shrink: 0; margin-top: 0.15rem; display:flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-mid)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+            </div>
             <div>
               <h4 style="font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 0.4rem;">Paisaje natural integrado</h4>
               <p style="font-size: 0.88rem; font-weight: 300; color: var(--text-muted); line-height: 1.7;">El trazado respeta el relieve serrano y los cursos de agua naturales. No se construyó sobre el paisaje: se diseñó dentro de él.</p>
@@ -830,7 +974,9 @@
 
         <div style="border-top: 1px solid var(--cream-dark); padding: 2rem 0;">
           <div style="display: flex; align-items: flex-start; gap: 1.4rem;">
-            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--green-deep); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; margin-top: 0.15rem;">🏆</div>
+            <div style="width: 36px; height: 36px; flex-shrink: 0; margin-top: 0.15rem; display:flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-mid)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;"><polyline points="8 21 12 21 16 21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M7 4H4a2 2 0 0 0-2 2v2c0 2.76 2.24 5 5 5h.6"/><path d="M17 4h3a2 2 0 0 1 2 2v2c0 2.76-2.24 5-5 5h-.6"/><path d="M7 4h10l-1 9a4 4 0 0 1-8 0z"/></svg>
+            </div>
             <div>
               <h4 style="font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 0.4rem;">Torneos y actividad permanente</h4>
               <p style="font-size: 0.88rem; font-weight: 300; color: var(--text-muted); line-height: 1.7;">El club organiza torneos durante todo el año. Para quienes juegan, hay comunidad activa. Para quienes no, el campo siempre tiene movimiento y vida.</p>
@@ -840,7 +986,9 @@
 
         <div style="border-top: 1px solid var(--cream-dark); padding: 2rem 0;">
           <div style="display: flex; align-items: flex-start; gap: 1.4rem;">
-            <div style="width: 36px; height: 36px; border-radius: 50%; background: var(--green-deep); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; flex-shrink: 0; margin-top: 0.15rem;">🎓</div>
+            <div style="width: 36px; height: 36px; flex-shrink: 0; margin-top: 0.15rem; display:flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="var(--green-mid)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/></svg>
+            </div>
             <div>
               <h4 style="font-family: var(--sans); font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dark); margin-bottom: 0.4rem;">Clases y academia de golf</h4>
               <p style="font-size: 0.88rem; font-weight: 300; color: var(--text-muted); line-height: 1.7;">No hace falta saber jugar para elegir vivir acá. El club ofrece clases para todos los niveles, desde principiantes hasta golfers avanzados.</p>
@@ -851,7 +999,6 @@
       </div>
     </div>
 
-    <!-- Contacto secretaría de golf -->
     <div style="
       margin-top: 5rem; border-top: 1px solid var(--cream-dark);
       padding-top: 3rem; display: flex; align-items: center;
@@ -861,42 +1008,40 @@
         <p style="font-size: 0.65rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem;">Secretaría de Golf</p>
         <p style="font-size: 0.88rem; font-weight: 300; color: var(--text-muted); line-height: 1.6;">Consultas sobre turnos, torneos y membresías.</p>
       </div>
-      <a href="tel:+5493513989698" style="
+      <a href="tel:+5493512562841" style="
         display: inline-flex; align-items: center; gap: 0.8rem;
         font-family: var(--serif); font-size: 1.5rem; font-weight: 300;
         color: var(--text-dark); text-decoration: none;
         border-bottom: 1px solid var(--gold); padding-bottom: 2px;
         transition: color 0.2s;
       " onmouseover="this.style.color='var(--green-mid)'" onmouseout="this.style.color='var(--text-dark)'">
-        +54 9 3513 98-9698
+        +54 9 351 256-2841
       </a>
     </div>
 
   </div>
 
   <style>
-    @media (max-width: 1100px) {
-      #golf { padding: 6rem 3rem; }
-    }
     @media (max-width: 860px) {
-      #golf { padding: 5rem 1.5rem; }
-      #golf > div > div:first-child { grid-template-columns: 1fr !important; gap: 2rem !important; }
-      #golf > div > div:nth-child(2) { grid-template-columns: 1fr 1fr !important; }
-      #golf > div > div:nth-child(3) { grid-template-columns: 1fr !important; gap: 3rem !important; }
+      .golf-header-grid { grid-template-columns: 1fr !important; gap: 2rem !important; margin-bottom: 3rem !important; }
+      .golf-stats-grid { grid-template-columns: 1fr 1fr !important; margin-bottom: 3rem !important; }
+      .golf-stats-grid > div:last-child { grid-column: 1 / -1; border-right: none; border-top: 1px solid var(--cream-dark); }
+      .golf-features-grid { grid-template-columns: 1fr !important; gap: 3rem !important; }
     }
-    @media (max-width: 600px) {
-      #golf > div > div:nth-child(2) { grid-template-columns: 1fr !important; }
+    @media (max-width: 480px) {
+      .golf-stats-grid { grid-template-columns: 1fr !important; }
+      .golf-stats-grid > div { border-right: none !important; border-bottom: 1px solid var(--cream-dark); }
+      .golf-stats-grid > div:last-child { border-top: none; }
     }
   </style>
 
 </section>
-<!-- /GOLF -->
 
 <!-- RESTAURANTE -->
 <section id="restaurante" style="background: var(--green-deep); padding: 7rem 6rem; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center;">
   <div style="
     min-height: 420px;
-    background: url('img/foto-05.jpg') center/cover no-repeat;
+    background: url('foto-05.jpg') center/cover no-repeat;
     border-radius: 4px;
     position: relative;
   ">
@@ -919,18 +1064,11 @@
         color: var(--white); text-decoration: none;
         transition: color 0.2s;
       " onmouseover="this.style.color='var(--gold-light)'" onmouseout="this.style.color='var(--white)'">
-        <span style="font-size:1rem;">📞</span>
         +54 9 3533 43-9118
       </a>
       <p style="font-size:0.78rem; color:rgba(255,255,255,0.38); margin-top:0.2rem;">Consultanos horarios y menú disponible</p>
     </div>
   </div>
-  <style>
-    @media (max-width: 860px) {
-      #restaurante { grid-template-columns: 1fr !important; padding: 5rem 1.5rem !important; }
-      #restaurante > div:first-child { min-height: 260px !important; }
-    }
-  </style>
 </section>
 
 <!-- MASTERPLAN -->
@@ -1032,10 +1170,6 @@
       <p class="faq-a">Sí. Existen alternativas de pago en pesos. El equipo comercial te presenta las opciones disponibles según el momento de la operación.</p>
     </div>
     <div class="faq-item">
-      <p class="faq-q">¿Se aceptan inmuebles o bienes como parte de pago?</p>
-      <p class="faq-a">No. Actualmente las operaciones se realizan exclusivamente en efectivo o financiación propia del proyecto. No se reciben inmuebles, vehículos ni otros bienes como parte de pago.</p>
-    </div>
-    <div class="faq-item">
       <p class="faq-q">¿Hay costos adicionales al precio del lote?</p>
       <p class="faq-a">No. Carlos Paz Golf se hace cargo de todos los gastos de la operación. El precio informado es el precio final. Sin sorpresas.</p>
     </div>
@@ -1055,15 +1189,21 @@
       Nuestro equipo atiende consultas de lunes a viernes de 9 a 18 hs, y fines de semana con turno previo. Respondemos dentro de las 24 horas hábiles.
     </p>
     <div class="contact-detail">
-      <div class="contact-detail-icon">📞</div>
+      <div class="contact-detail-icon">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.42 2 2 0 0 1 3.6 1.26h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6.29 6.29l.96-.96a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
       <a href="https://wa.me/5493513504128" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:1px; transition:color 0.2s;" onmouseover="this.style.color='var(--green-mid)'" onmouseout="this.style.color='inherit'">+54 9 3513 50-4128</a>
     </div>
     <div class="contact-detail">
-      <div class="contact-detail-icon">✉️</div>
+      <div class="contact-detail-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
       <span>comercial@carlospazgolf.com</span>
     </div>
     <div class="contact-detail">
-      <div class="contact-detail-icon">📍</div>
+      <div class="contact-detail-icon">
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
       <a href="https://maps.app.goo.gl/VwedAApmWpZN52iW7" target="_blank" rel="noopener" style="color:inherit; text-decoration:none; border-bottom:1px solid var(--gold); padding-bottom:1px; transition:color 0.2s;" onmouseover="this.style.color='var(--green-mid)'" onmouseout="this.style.color='inherit'">Ruta Prov. N° 48, Camino a las Jarillas<br>San Antonio de Arredondo, Córdoba</a>
     </div>
     <div class="contact-divider"></div>
@@ -1127,6 +1267,25 @@
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
     nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Hamburger menu
+  const hamburger = document.getElementById('nav-hamburger');
+  const overlay = document.getElementById('nav-overlay');
+
+  hamburger.addEventListener('click', () => {
+    const isOpen = overlay.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+
+  // Close overlay when a link is clicked
+  document.querySelectorAll('.nav-overlay-link').forEach(link => {
+    link.addEventListener('click', () => {
+      overlay.classList.remove('open');
+      hamburger.classList.remove('open');
+      document.body.style.overflow = '';
+    });
   });
 
   // Form handlers
