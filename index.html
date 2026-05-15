@@ -1476,15 +1476,48 @@
     });
   });
 
+  // Webhook Make
+  const MAKE_WEBHOOK = 'https://hook.us2.make.com/meub7n4yq7nbynwmvp3m60wlf95kx5sz';
+
+  async function enviarAMake(datos) {
+    try {
+      await fetch(MAKE_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(datos)
+      });
+    } catch(e) { console.error('Make webhook error:', e); }
+  }
+
   // Form handlers
-  document.getElementById('masterplan-form').addEventListener('submit', function(e) {
+  document.getElementById('masterplan-form').addEventListener('submit', async function(e) {
     e.preventDefault();
+    const campos = this.querySelectorAll('input, select');
+    await enviarAMake({
+      formulario: 'Masterplan',
+      nombre: campos[0].value,
+      email: campos[1].value,
+      telefono: campos[2].value,
+      interes: campos[3].value,
+      fecha: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Cordoba' })
+    });
     gtag('event', 'form_submit', { event_category: 'lead', event_label: 'masterplan' });
     this.style.display = 'none';
     document.getElementById('masterplan-success').classList.add('show');
   });
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
+
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
+    const campos = this.querySelectorAll('input, select, textarea');
+    await enviarAMake({
+      formulario: 'Contacto',
+      nombre: campos[0].value,
+      email: campos[1].value,
+      telefono: campos[2].value,
+      interes: campos[3].value,
+      mensaje: campos[4].value,
+      fecha: new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Cordoba' })
+    });
     gtag('event', 'form_submit', { event_category: 'lead', event_label: 'contacto' });
     this.style.display = 'none';
     document.getElementById('contact-success').classList.add('show');
